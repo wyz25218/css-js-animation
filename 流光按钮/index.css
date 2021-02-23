@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+}
+
+a {
+    position: relative;
+    width: 24vw;
+    height: 6vw;
+    line-height: 6vw;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2vw;
+    color: #fff;
+    border-radius: 6vw;
+    background-image: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    background-size: 400%;
+    z-index: 1;
+    animation: sun 6s linear infinite;
+    animation-play-state: paused;
+}
+
+a::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    background-size: 400%;
+    z-index: -1;
+    /* 设置模糊度，显示发光效果 */
+    filter: blur(20px);
+    animation: sun 6s linear infinite;
+    animation-play-state: paused;
+}
+
+a:hover {
+    animation-play-state: running;
+}
+
+a:hover::before {
+    animation-play-state: running;
+}
+
+a:hover {
+    animation: sun 8s infinite;
+}
+
+@keyframes sun {
+    100% {
+        background-position: -400% 0;
+    }
+}

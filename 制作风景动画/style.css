@@ -1,0 +1,878 @@
+:root {
+    --background-color: #f5f5f5;
+    --border-color: #7591ad;
+    --text-color: #34495e;
+    --color1: #ec3e27;
+    --color2: #fd79a8;
+    --color3: #61bbff;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #f97f51;
+    --color8: #bdc581;
+}
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial;
+}
+
+.channel {
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #35353588;
+    z-index: 1000;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: #dddddd; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 规定排列方向，column为纵向排列 */
+    flex-direction: column;
+}
+
+#switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    border: 3px solid black;
+    border-radius: 30px;
+    /* 设置鼠标移入时光标的形状，这里设为一只手 */
+    cursor: pointer;
+}
+
+#switch::before,
+#switch::after {
+    position: absolute;
+    line-height: 26px;
+    /* 单词大写 */
+    text-transform: uppercase;
+    padding: 0 10px;
+    font-weight: 700;
+    /* background-color: #ddd; */
+    /* 取消鼠标光标效果和事件响应 */
+    cursor: initial;
+    pointer-events: none;
+}
+
+#switch::before {
+    content: 'slow';
+    right: 100%;
+    color: var(--color7);
+}
+
+#switch::after {
+    content: 'fast';
+    left: 100%;
+    color: var(--color3);
+}
+
+
+/* 默认情况下的样式 */
+
+#switch .cricle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid black;
+    box-shadow: inset 3px -2px 0 0 var(--color7);
+    transition: all .3s cubic-bezier(.86, 1.51, .74, 1);
+}
+
+
+/* 点击选中的样式 */
+
+#switch.switched .cricle {
+    left: calc(100% - 20px - 3px);
+    box-shadow: inset 3px -2px 0 0 var(--color3);
+}
+
+
+/* 主画布的样式 */
+
+.main {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border: 2px solid black;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+
+/* 太阳的样式 */
+
+.sun {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border: 2px solid black;
+    left: 300px;
+    top: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: sun_rotate 10s linear infinite;
+}
+
+@keyframes sun_rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.sun span {
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: #333;
+    transform: rotate(calc(var(--i)*45deg)) translate(27px);
+    box-shadow: 3px 3px 0 0 var(--color5);
+    animation: sun_ray 1s linear infinite;
+    /* calc：计算 */
+    animation-delay: calc(var(--i)*-0.5s);
+}
+
+@keyframes sun_ray {
+    0% {
+        transform: rotate(calc(var(--i)*45deg)) translateX(27px) scale(1);
+    }
+    50% {
+        transform: rotate(calc(var(--i)*45deg)) translateX(27px) scale(0.6);
+    }
+    100% {
+        transform: rotate(calc(var(--i)*45deg)) translateX(27px) scale(1);
+    }
+}
+
+
+/* 底部群山样式 */
+
+.mountain {
+    position: absolute;
+    border: 2px solid black;
+    transform: rotate(45deg);
+}
+
+.mountain.a {
+    height: 12px;
+    width: 12px;
+    left: 80px;
+    bottom: 40px
+}
+
+.mountain.b {
+    height: 14px;
+    width: 14px;
+    left: 140px;
+    bottom: 55px;
+}
+
+.mountain.c {
+    height: 18px;
+    width: 18px;
+    left: 200px;
+    bottom: 75px;
+}
+
+.mountain.d {
+    /* height: 2px;
+    width: 2px; */
+    left: 260px;
+    bottom: 60px;
+    border-bottom: none;
+}
+
+.mountain.e {
+    height: 14px;
+    width: 14px;
+    left: 320px;
+    bottom: 35px;
+}
+
+.mountain.a::before,
+.mountain.b::before,
+.mountain.c::before,
+.mountain.d::before,
+.mountain.e::before,
+.mountain.a::after,
+.mountain.b::after,
+.mountain.c::after,
+.mountain.d::after,
+.mountain.e::after {
+    position: absolute;
+    content: "";
+    background-color: #333;
+}
+
+.mountain.a::before,
+.mountain.b::before,
+.mountain.c::before,
+.mountain.d::before,
+.mountain.e::before {
+    left: -2px;
+    width: 2px;
+}
+
+.mountain.a::before {
+    height: 75px;
+}
+
+.mountain.b::before {
+    height: 70px;
+}
+
+.mountain.c::before {
+    height: 70px;
+}
+
+.mountain.d::before {
+    height: 30px;
+}
+
+.mountain.e::before {
+    height: 38px;
+}
+
+.mountain.a::after,
+.mountain.b::after,
+.mountain.c::after,
+.mountain.d::after,
+.mountain.e::after {
+    top: -2px;
+    left: 10px;
+    height: 2px;
+}
+
+.mountain.a::after {
+    width: 20px;
+    box-shadow: -3px -3px 0 0 var(--color4);
+}
+
+.mountain.b::after {
+    width: 15px;
+    box-shadow: -3px -3px 0 0 var(--color4);
+}
+
+.mountain.c::after {
+    width: 50px;
+    box-shadow: -3px -3px 0 0 var(--color4);
+}
+
+.mountain.d::after {
+    left: 0;
+    width: 65px;
+    box-shadow: 3px 3px 0 0 var(--color4);
+}
+
+.mountain.e::after {
+    width: 60px;
+    box-shadow: 2px 3px 0 0 var(--color4);
+}
+
+.cloud_wind_group_fast {
+    height: 100%;
+    width: 1188px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    animation: fly 3s linear infinite;
+    animation-play-state: running;
+}
+
+.cloud_wind_group_slow {
+    height: 100%;
+    width: 1188px;
+    animation: fly 6s linear infinite;
+    animation-play-state: paused;
+}
+
+.slow .cloud_wind_group_slow {
+    animation-play-state: running;
+}
+
+.slow .cloud_wind_group_fast {
+    animation-play-state: paused;
+}
+
+.cloud_wind_group {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0%);
+    }
+    100% {
+        transform: translate(-33.333333333%);
+    }
+}
+
+
+/* 云 */
+
+.cloud {
+    position: absolute;
+    width: 60px;
+    height: 45px;
+}
+
+.cloud.a {
+    left: 80px;
+    top: 70px;
+}
+
+.cloud.b {
+    left: 180px;
+    top: 150px;
+    transform: rotateY(180deg);
+}
+
+.cloud.c {
+    left: 320px;
+    top: 80px;
+}
+
+.cloud span {
+    position: absolute;
+    display: block;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.cloud span:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    bottom: 0px;
+    left: 3px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    transform: rotate(45deg);
+}
+
+.cloud span:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    bottom: 15px;
+    left: 10px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    transform: rotate(90deg);
+    z-index: 1;
+}
+
+.cloud span:nth-child(3) {
+    width: 30px;
+    height: 30px;
+    bottom: 10px;
+    left: 16px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    transform: rotate(150deg);
+    box-shadow: -3px 1px 0 0 var(--color3);
+}
+
+.cloud span:nth-child(4) {
+    width: 25px;
+    height: 25px;
+    bottom: 0px;
+    left: 32px;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+    box-shadow: 2px -2px 0 0 var(--color3);
+}
+
+.cloud span:nth-child(5) {
+    width: 35px;
+    height: 15px;
+    left: 10px;
+    bottom: 0;
+    border-radius: 0;
+    border-width: 0 0 2px 0;
+}
+
+
+/* 中间云的阴影 */
+
+.cloud.b span:nth-child(1) {
+    box-shadow: -3px 0px 0 0 var(--color3);
+}
+
+.cloud.b span:nth-child(2) {
+    box-shadow: -2px 2px 0 0 var(--color3);
+    z-index: 1;
+}
+
+.cloud.b span:nth-child(3) {
+    box-shadow: 0px 3px 0 0 var(--color3);
+}
+
+.cloud.b span:nth-child(4) {
+    box-shadow: none;
+}
+
+
+/* 风 */
+
+.wind {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* 大风 */
+
+.wind.a {
+    left: 60px;
+    top: 140px;
+}
+
+.wind.b {
+    left: 280px;
+    top: 200px;
+}
+
+.wind span,
+.wind span::before,
+.wind span::after {
+    position: absolute;
+    background-color: #333;
+    height: 3px
+}
+
+.wind span,
+.wind span::after {
+    box-shadow: 3px 2px 0 0 var(--color3);
+}
+
+.wind span::before,
+.wind span::after {
+    position: absolute;
+    content: "";
+}
+
+
+/* 大风效果1 */
+
+.wind span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 30px;
+}
+
+.wind span:nth-child(1):before {
+    left: -5px;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #333;
+    border-color: transparent transparent #333 #333;
+    background-color: transparent;
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+.wind span:nth-child(1):after {
+    width: 15px;
+    left: 110%;
+}
+
+
+/* 大风效果2*/
+
+.wind span:nth-child(2) {
+    top: 10px;
+    left: -20px;
+    width: 40px;
+}
+
+.wind span:nth-child(2):before {
+    left: -5px;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    border: 3px solid #333;
+    border-color: transparent transparent #333 #333;
+    background-color: transparent;
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+.wind span:nth-child(2):after {
+    width: 35px;
+    left: 110%;
+}
+
+
+/* 大风效果3 */
+
+.wind span:nth-child(3) {
+    top: 15px;
+    left: 30px;
+    width: 10px;
+}
+
+.wind span:nth-child(3):before {
+    left: -35px;
+    bottom: 0;
+    width: 30px;
+}
+
+.wind span:nth-child(3):after {
+    width: 30px;
+    left: 15px;
+}
+
+
+/* 大风效果4 */
+
+.wind span:nth-child(4) {
+    top: 20px;
+    left: 20px;
+    width: 30px;
+}
+
+.wind span:nth-child(4):before {
+    left: -15px;
+    bottom: 0;
+    width: 10px;
+}
+
+.wind span:nth-child(4):after {
+    width: 10px;
+    left: 35px;
+}
+
+
+/* 小风 */
+
+.wind_small {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 小风纹理 */
+
+.wind_small span,
+.wind_small span::after {
+    position: absolute;
+    height: 3px;
+    background-color: #333;
+    box-shadow: 3px 4px 0 0 var(--color3);
+}
+
+.wind_small span:nth-child(1) {
+    top: 40px;
+    left: 50px;
+    width: 50px;
+}
+
+.wind_small span:nth-child(n)::after {
+    content: "";
+    width: 50%;
+    top: 0px;
+    left: 120%;
+}
+
+.wind_small span:nth-child(2) {
+    top: 80px;
+    left: 150px;
+    width: 45px;
+}
+
+.wind_small span:nth-child(3) {
+    top: 320px;
+    left: 50px;
+    width: 15px;
+}
+
+.wind_small span:nth-child(4) {
+    top: 280px;
+    left: 100px;
+    width: 20px;
+}
+
+.wind_small span:nth-child(5) {
+    top: 120px;
+    left: 250px;
+    width: 35px;
+}
+
+.wind_small span:nth-child(6) {
+    top: 280px;
+    left: 350px;
+    width: 18px;
+}
+
+.wind_small span:nth-child(7) {
+    top: 240px;
+    left: 200px;
+    width: 25px;
+}
+
+.wind_small span:nth-child(8) {
+    top: 220px;
+    left: 60px;
+    width: 30px;
+}
+
+
+/* 树 */
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    animation: tree_move 1s linear infinite;
+    transform-origin: bottom;
+}
+
+@keyframes tree_move {
+    0%,
+    100% {
+        transform: skewX(10deg);
+    }
+    20% {
+        transform: skewX(13deg);
+    }
+    40% {
+        transform: skewX(16deg);
+    }
+    70% {
+        transform: skewX(20.5deg);
+    }
+    85% {
+        transform: skewX(14deg);
+    }
+}
+
+.tree span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 10px;
+    background-color: #333;
+}
+
+.tree span:nth-child(1) {
+    left: 60px;
+}
+
+.tree span:nth-child(2) {
+    left: 150px;
+}
+
+.tree span:nth-child(3) {
+    left: 180px;
+}
+
+.tree span:nth-child(4) {
+    left: 335px;
+}
+
+.tree span:nth-child(5) {
+    left: 360px;
+}
+
+.tree span::before,
+.tree span::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #333;
+    width: 12px;
+    height: 26px;
+    border-radius: 50%;
+    bottom: 100%;
+    background-color: #fff;
+    box-shadow: inset -3px 3px 2px 0 var(--color4);
+}
+
+.tree span::after {
+    background-color: transparent;
+    border-color: transparent var(--color4) transparent transparent;
+    transform: rotate(-12deg) translate(5px, -5px);
+    box-shadow: none;
+}
+
+
+/* 风车组(3个) */
+
+.windmill_wrap {
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    left: 0;
+    bottom: 0;
+}
+
+
+/* 风车(单个) */
+
+.windmill {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 14px;
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.windmill.left {
+    left: 100px;
+    transform: scale(0.5);
+}
+
+.windmill.center {
+    left: 200px;
+    transform: scale(0.9);
+}
+
+.windmill.right {
+    left: 300px;
+    transform: scale(0.7);
+}
+
+
+/* 风车支架 */
+
+.windmill .pole {
+    position: absolute;
+    width: 14px;
+    height: 140px;
+    bottom: 0;
+    perspective: 70px;
+}
+
+.windmill .pole::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border: 3px solid black;
+    border-width: 0 3px;
+    transform-origin: bottom;
+    transform: rotateX(15deg);
+}
+
+
+/* 风车头 */
+
+.windmill_slow,
+.windmill_fast,
+.windmill .head {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 120%;
+    /* animation: windmill_fan_rotate 4s linear infinite; */
+}
+
+.windmill_slow {
+    animation: windmill_fan_rotate 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.slow .windmill_slow {
+    animation-play-state: running;
+}
+
+.windmill_fast {
+    animation: windmill_fan_rotate 2s linear infinite;
+    animation-play-state: running;
+}
+
+.slow .windmill_fast {
+    animation-play-state: paused;
+}
+
+@keyframes windmill_fan_rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.windmill.center .head {
+    animation-delay: -3s
+}
+
+.windmill.right .head {
+    animation-delay: -2s
+}
+
+.windmill .head::after {
+    position: absolute;
+    content: "";
+    width: 18px;
+    height: 18px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+
+/* 风车扇叶 */
+
+.windmill .head span {
+    position: absolute;
+    background-color: #fff;
+    width: 100px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transform: rotate(calc(var(--i)*120deg)) translate(42px);
+}
+
+
+/* 旋转动画 */

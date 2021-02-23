@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .container,
+        .move {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(90deg);
+        }
+        
+        .container {
+            animation: rotate 12s linear alternate infinite;
+            animation-play-state: running;
+        }
+        
+        .container:hover {
+            animation-play-state: paused;
+        }
+        
+        .container .item,
+        .move .item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .item.front {
+            transform: translateZ(150px);
+        }
+        
+        .item.back {
+            transform: rotateY(180deg) translateZ(150px);
+        }
+        
+        .item.left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+        
+        .item.right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        
+        .item.top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        
+        .item.bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        
+        @keyframes rotate {
+            0%,
+            5% {
+                transform: rotateY(90deg);
+            }
+            20%,
+            25% {
+                transform: rotateY(180deg);
+            }
+            40%,
+            45% {
+                transform: rotateY(270deg);
+            }
+            60%,
+            65% {
+                transform: rotateX(-90deg);
+            }
+            80%,
+            85% {
+                transform: rotateX(0deg);
+            }
+            95%,
+            100% {
+                transform: rotateX(90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item front"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item back"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item left"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item right"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item top"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item bottom"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+    </div>
+
+    <div class="move" onmousedown="myRotate()">
+        <div class="item front"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item back"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item left"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item right"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item top"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+        <div class="item bottom"> <img src="69988660_p0.png" width="100%" alt="提示"></div>
+    </div>
+    <script type="text/javascript">
+        let x = 0,
+            y = 0;
+
+        function myRotate(event) {
+            event = event || window.event;
+            const container = document.querySelector(".move");
+            let xArr = [],
+                yArr = [];
+            xArr[0] = event.clientX / 100;
+            yArr[0] = event.clientY / 100;
+            window.onmousemove = function(event) {
+                event = event || window.event;
+                xArr[1] = event.clientX / 100;
+                yArr[1] = event.clientY / 100;
+                x += xArr[1] - xArr[0];
+                y += yArr[0] - yArr[1];
+                container.style.transform = "rotateX(" + y + "deg) rotateY(" + x + "deg)";
+                // console.log(x + " " + y)
+                return false;
+            }
+
+            window.onmouseup = function() {
+                //鼠标抬起事件————用于清除鼠标移动事件，   
+                window.onmousemove = null;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            background-color: #f0f0f0;
+            width:80px;
+            height: 30px;
+            display: flex;
+            /* overflow: hidden; */
+            border: 1px solid #333;
+            position: relative;
+        }
+        .son{
+            position: absolute;
+            background-color: #dedede;
+            animation: textScroll 5s linear infinite;
+        }
+        @keyframes textScroll {
+            0%{
+                transform: translate(0);
+            }
+            10%{
+                transform: translate(0);
+            }
+            90%{
+                transform: translate(calc(-100% + 80px));
+            }
+            100%{
+                transform: translate(calc(-100% + 80px));
+                /* transform: translate(-100%); */
+            }
+        }
+        .father2{
+            border: 1px solid #333;
+        }
+        .text{
+            position: relative;
+            border: 2px solid #333;
+            top: 0;
+            transition: top 1s;
+        }
+        /* @keyframes textScroll {
+            0%{
+                left: 0;
+            }
+            10%{
+                left: 0;
+            }
+            90%{
+                right: 0;
+            }
+            100%{
+                right: 0;
+            }
+        } */
+        .scroll{
+            border: 1px solid #333;
+            /* width: 20px; */
+            display: flex;
+            margin-left: calc(80px - 100%) ;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">wenziasfnawefarenglblsdbvjbelarnflcdsjlb</div>
+    </div>
+    <div class="father">
+        <div class="son">wenz</div>
+    </div>
+    <div class="father2">
+        <div class=>wenz</div>
+        <div class="text" onclick="handleClick()">123</div>
+    </div>
+    <div class="father">
+        <div class="scroll">
+123123123123
+        </div>
+    </div>
+    <script>
+        var div=document.querySelector(".text")
+        function handleClick(){
+            console.log("click")
+            div.style.top=30+'px';
+        }
+    </script>
+</body>
+</html>

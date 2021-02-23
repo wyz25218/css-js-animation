@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="channel">风景效果</header>
+    <main class="container slow">
+        <div id="switch" onclick="change()"><span class="cricle"></span></div>
+        <div class="main">
+
+            <!-- 太阳 -->
+            <div class="sun">
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+            </div>
+
+            <!-- 群山 -->
+            <div>
+                <div class="mountain a"></div>
+                <div class="mountain b"></div>
+                <div class="mountain c"></div>
+                <div class="mountain d"></div>
+                <div class="mountain e"></div>
+            </div>
+
+            <!-- 云和风 -->
+            <div class="cloud_wind_group_slow">
+                <div class="cloud_wind_group_fast">
+                    <div class="cloud_wind_group" style="--i:1">
+                        <div class="cloud a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud c">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind_small">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="cloud_wind_group" style="--i:2">
+                        <div class="cloud a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud c">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind_small">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="cloud_wind_group" style="--i:3">
+                        <div class="cloud a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="cloud c">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind a">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind b">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="wind_small">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 树 -->
+            <div class="tree">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- 风车组 -->
+            <div class="windmill_wrap">
+                <div class="windmill left">
+                    <!-- 风车支架 -->
+                    <div class="pole"></div>
+                    <!-- 风车头 -->
+                    <div class="windmill_slow">
+                        <div class="windmill_fast">
+                            <div class="head">
+                                <!-- 风车扇叶 -->
+                                <span style="--i:1"></span>
+                                <span style="--i:2"></span>
+                                <span style="--i:3"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="windmill right">
+                    <!-- 风车支架 -->
+                    <div class="pole"></div>
+                    <!-- 风车头 -->
+                    <div class="windmill_slow">
+                        <div class="windmill_fast">
+                            <div class="head">
+                                <!-- 风车扇叶 -->
+                                <span style="--i:1"></span>
+                                <span style="--i:2"></span>
+                                <span style="--i:3"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="windmill center">
+                    <!-- 风车支架 -->
+                    <div class="pole"></div>
+                    <!-- 风车头 -->
+                    <div class="windmill_slow">
+                        <div class="windmill_fast">
+                            <div class="head">
+                                <!-- 风车扇叶 -->
+                                <span style="--i:1"></span>
+                                <span style="--i:2"></span>
+                                <span style="--i:3"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        function change(event) {
+            let cricle = document.querySelector("#switch");
+            let container = document.querySelector(".container")
+            console.log(cricle)
+            if (cricle.classList.contains("switched")) {
+                cricle.classList.remove("switched");
+                container.classList.add("slow");
+
+            } else {
+                cricle.classList.add("switched");
+                container.classList.remove("slow");
+            }
+        }
+    </script>
+</body>
+
+</html>
